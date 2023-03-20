@@ -1,0 +1,23 @@
+﻿@page
+@model SimpleUsage.Pages.DataDemoModel
+@{
+    ViewData["Title"] = "DataDemo";
+}
+
+<h1>Data Demo</h1>
+
+<form>
+    <p>
+        Search: <input type="text" asp-for="SearchTerm" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<p>
+    <ul>
+        @foreach (var person in Model.People)
+        {
+            <li>@person.FirstName @person.LastName</li>
+        }
+    </ul>
+</p>
