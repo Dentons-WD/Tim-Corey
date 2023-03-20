@@ -14,6 +14,9 @@ namespace SimpleUsage.Pages
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; } = "";
 
+        [BindProperty]
+        public PersonModel NewPerson { get; set; }
+
         public async Task OnGetAsync()
         {
             List<PersonModel> output = new List<PersonModel>();
@@ -30,6 +33,18 @@ namespace SimpleUsage.Pages
             {
                 People = output;
             }
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            People.Add(NewPerson);
+
+            return RedirectToPage();
         }
     }
 }
