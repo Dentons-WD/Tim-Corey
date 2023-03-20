@@ -7,11 +7,17 @@
     MySetting Value: @mySetting
 </p>
 
+<p>
+    SubSetting Value: @mySubSetting
+</p>
+
 @code {
     string mySetting = "";
+    string mySubSetting = "";
 
     protected override void OnInitialized()
     {
         mySetting = _config.GetValue<string>("MySetting");
+        mySubSetting = _config.GetValue<string>("MainSetting:SubSection:SubSubSetting");
     }
 }
