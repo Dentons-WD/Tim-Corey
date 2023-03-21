@@ -11,13 +11,19 @@
     SubSetting Value: @mySubSetting
 </p>
 
+<p>
+    Connection String Value: @connectionString
+</p>
+
 @code {
     string mySetting = "";
     string mySubSetting = "";
+    string connectionString = "";
 
     protected override void OnInitialized()
     {
         mySetting = _config.GetValue<string>("MySetting");
         mySubSetting = _config.GetValue<string>("MainSetting:SubSection:SubSubSetting");
+        connectionString = _config.GetConnectionString("Default");
     }
 }
