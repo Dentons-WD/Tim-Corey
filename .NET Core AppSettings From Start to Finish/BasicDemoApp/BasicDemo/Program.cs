@@ -28,6 +28,8 @@ namespace BasicDemo
                     builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
                     builder.AddJsonFile($"appsettings.{ env.EnvironmentName }.json", optional: true, reloadOnChange: true);
 
+                    builder.AddJsonFile("custom.json", optional: true, reloadOnChange: true);
+
                     if (hostingContext.HostingEnvironment.IsDevelopment())
                     {
                         builder.AddUserSecrets<Program>();
