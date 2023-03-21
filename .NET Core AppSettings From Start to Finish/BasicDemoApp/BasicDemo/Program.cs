@@ -20,6 +20,22 @@ namespace BasicDemo
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, builder) => 
+                {
+                    IHostEnvironment env = hostingContext.HostingEnvironment;
+                    builder.Sources.Clear();
+
+                    builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                    builder.AddJsonFile($"appsettings.{ env.EnvironmentName }.json", optional: true, reloadOnChange: true);
+
+                    if (hostingContext.HostingEnvironment.IsDevelopment())
+                    {
+                        builder.AddUserSecrets<Program>();
+                    }
+
+                    builder.AddEnvironmentVariables();
+                    builder.AddCommandLine(args);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
