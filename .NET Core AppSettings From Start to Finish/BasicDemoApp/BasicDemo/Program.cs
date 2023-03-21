@@ -32,6 +32,8 @@ namespace BasicDemo
 
                     builder.AddXmlFile("custom.xml", optional:true, reloadOnChange: true);
 
+                    builder.AddIniFile("custom.ini", optional: true, reloadOnChange: true);
+
                     if (hostingContext.HostingEnvironment.IsDevelopment())
                     {
                         builder.AddUserSecrets<Program>();
