@@ -22,6 +22,11 @@ namespace BasicDemo
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, builder) => 
                 {
+                    var memCollection = new Dictionary<string, string>
+                    {
+                        { "MainSetting:SubSetting", "sub setting from dictionary" }
+                    };
+
                     IHostEnvironment env = hostingContext.HostingEnvironment;
                     builder.Sources.Clear();
 
@@ -33,6 +38,8 @@ namespace BasicDemo
                     builder.AddXmlFile("custom.xml", optional:true, reloadOnChange: true);
 
                     builder.AddIniFile("custom.ini", optional: true, reloadOnChange: true);
+
+                    builder.AddInMemoryCollection(memCollection);
 
                     if (hostingContext.HostingEnvironment.IsDevelopment())
                     {
