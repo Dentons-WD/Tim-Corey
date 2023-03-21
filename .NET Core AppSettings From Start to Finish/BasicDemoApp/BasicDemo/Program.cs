@@ -30,6 +30,8 @@ namespace BasicDemo
 
                     builder.AddJsonFile("custom.json", optional: true, reloadOnChange: true);
 
+                    builder.AddXmlFile("custom.xml", optional:true, reloadOnChange: true);
+
                     if (hostingContext.HostingEnvironment.IsDevelopment())
                     {
                         builder.AddUserSecrets<Program>();

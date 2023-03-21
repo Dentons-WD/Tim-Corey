@@ -5,4 +5,10 @@
     <UserSecretsId>fae8d326-cea4-4a5a-a19e-7c79b0dca3d6</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="custom.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

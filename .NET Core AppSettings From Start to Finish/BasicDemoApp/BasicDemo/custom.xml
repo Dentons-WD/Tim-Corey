@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <MainSetting SubSetting="This is also from XML">
+    <SubSection SubSubSetting ="This is our sub sub setting from XML" />
+  </MainSetting>
+</configuration>
