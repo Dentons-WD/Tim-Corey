@@ -1,8 +1,10 @@
 ﻿@page "/"
 
 @inject Demo _demo
+@inject ProcessDemo _processDemo
 
 <h1>Hello, world!</h1>
 <h2>Demo Time: @_demo.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+<h3>Days in Month: @_processDemo.GetDaysInMonth()</h3>
 
 Welcome to your new app.
