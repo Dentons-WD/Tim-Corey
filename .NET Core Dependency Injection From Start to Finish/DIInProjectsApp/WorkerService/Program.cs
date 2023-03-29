@@ -1,3 +1,4 @@
+using DIDemoLib;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -18,7 +19,10 @@ namespace WorkerService
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddHostedService<Worker>();
+                    services
+                        .AddHostedService<Worker>()
+                        .AddTransient<IMessages, Messages>();
+
                 });
     }
 }
