@@ -1,12 +1,20 @@
 ﻿@page "/"
 
-@inject IDemo _demo
-@inject IDemo _demo2
+@*@inject IDemo _demo
+@inject IDemo _demo2*@
+
+@inject IEnumerable<IDemo> _demos
 @inject ProcessDemo _processDemo
 
 <h1>Hello, world!</h1>
-<h2>Demo Time: @_demo.StartupTime.ToString("hh:mm:ss ffffff")</h2>
-<h2>Demo2 Time: @_demo2.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+
+@foreach (var item in _demos)
+{
+    <h2>Demo: @item.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+}
+
+@*<h2>Demo Time: @_demo.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+<h2>Demo2 Time: @_demo2.StartupTime.ToString("hh:mm:ss ffffff")</h2>*@
 <h3>Days in Month: @_processDemo.GetDaysInMonth()</h3>
 
 Welcome to your new app.

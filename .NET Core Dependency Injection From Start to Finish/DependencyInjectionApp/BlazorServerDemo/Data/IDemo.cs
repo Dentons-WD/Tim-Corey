@@ -6,4 +6,9 @@ namespace BlazorServerDemo.Data
     {
         DateTime StartupTime { get; init; }
     }
+
+    public interface IUtcDemo
+    {
+        DateTime StartupTime { get; init; }
+    }
 }
