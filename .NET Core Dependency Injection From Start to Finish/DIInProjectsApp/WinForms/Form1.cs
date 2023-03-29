@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DIDemoLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace WinForms
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(IMessages messages)
         {
             InitializeComponent();
+
+            helloText.Text = messages.SayHello();
+            goodbyeText.Text = messages.SayGoodBye();
         }
 
     }
