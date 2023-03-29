@@ -30,6 +30,15 @@ namespace BlazorServerDemo
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddDemoInfo();
+
+            // Samples
+            // More Info: https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#service-registration-methods
+            //services.AddTransient<Demo>();
+            //services.AddTransient<IDemo, Demo>();
+            //services.AddSingleton(new DemoWithData(5));
+            //services.AddSingleton(new Demo());
+            //services.AddTransient<IDemo>(i => new Demo());
+            //services.AddTransient(i => new DemoWithData(4));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
