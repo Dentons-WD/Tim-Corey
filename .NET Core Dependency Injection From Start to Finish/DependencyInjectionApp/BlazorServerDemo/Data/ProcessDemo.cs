@@ -11,12 +11,21 @@ namespace BlazorServerDemo.Data
 
         private readonly IDemo _demo;
 
+        public int AnotherNumber { get; set; } = 3;
+
         //public ProcessDemo(IServiceProvider service)
-        public ProcessDemo(IDemo demo)
+        public ProcessDemo(IDemo demo, int anotherNumber = 5)
         {
             //_service = service;
             _demo = demo;
+            AnotherNumber = anotherNumber;
         }
+
+        //public ProcessDemo(IDemo demo)
+        //{
+        //    //_service = service;
+        //    _demo = demo;
+        //}
 
         public int GetDaysInMonth()
         {
