@@ -1,18 +1,26 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace BlazorServerDemo.Data
 {
     public class ProcessDemo
     {
+        //private readonly IServiceProvider _service;
+
         private readonly IDemo _demo;
 
+        //public ProcessDemo(IServiceProvider service)
         public ProcessDemo(IDemo demo)
         {
+            //_service = service;
             _demo = demo;
         }
 
         public int GetDaysInMonth()
         {
+            //IDemo _demo = _service.GetRequiredService<IDemo>();
             return _demo.StartupTime.Month switch
             {
                 1 => 31,
