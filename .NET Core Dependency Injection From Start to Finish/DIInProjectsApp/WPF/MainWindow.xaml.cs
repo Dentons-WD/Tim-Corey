@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DIDemoLib;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,12 @@ namespace WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IMessages messages, IConfiguration config)
         {
             InitializeComponent();
+            helloText.Text = messages.SayHello();
+            configText.Text = config.GetValue<string>("test");
+            goodbyeText.Text = messages.SayGoodBye();
         }
     }
 }
