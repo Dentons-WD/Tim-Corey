@@ -2,7 +2,7 @@
 
 namespace BlazorServerDemo.Data
 {
-    public class Demo : IDemo
+    public class Demo : IDemo, ILocalDemo
     {
         public DateTime StartupTime { get; init; }
 

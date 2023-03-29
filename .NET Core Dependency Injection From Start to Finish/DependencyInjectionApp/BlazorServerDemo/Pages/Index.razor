@@ -10,7 +10,15 @@
 
 @foreach (var item in _demos)
 {
-    <h2>Demo: @item.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+    @if (item is ILocalDemo)
+    {
+        <h2>Local Demo: @item.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+    }
+
+    @if (item is IUtcDemo)
+    {
+        <h2>UTC Demo: @item.StartupTime.ToString("hh:mm:ss ffffff")</h2>
+    }
 }
 
 @*<h2>Demo Time: @_demo.StartupTime.ToString("hh:mm:ss ffffff")</h2>
