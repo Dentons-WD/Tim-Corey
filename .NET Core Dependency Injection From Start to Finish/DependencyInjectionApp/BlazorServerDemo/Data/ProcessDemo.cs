@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using BlazorServerDemo.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -29,6 +30,9 @@ namespace BlazorServerDemo.Data
 
         public int GetDaysInMonth()
         {
+            PersonModel p = new PersonModel();
+
+            p.FirstName = "Tim";
             //IDemo _demo = _service.GetRequiredService<IDemo>();
             return _demo.StartupTime.Month switch
             {
