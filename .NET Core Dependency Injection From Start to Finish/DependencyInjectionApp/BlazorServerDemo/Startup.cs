@@ -32,8 +32,8 @@ namespace BlazorServerDemo
             services.AddSingleton<WeatherForecastService>();
             services.AddDemoInfo();
 
-            services.TryAddTransient<IDemo, Demo>();
-            services.TryAddEnumerable(ServiceDescriptor.Transient<IDemo, Demo>());
+            //services.TryAddTransient<IDemo, Demo>();
+            //services.TryAddEnumerable(ServiceDescriptor.Transient<IDemo, Demo>());
 
             // Samples
             // More Info: https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#service-registration-methods
