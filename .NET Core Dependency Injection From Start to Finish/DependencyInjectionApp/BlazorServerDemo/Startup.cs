@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,9 @@ namespace BlazorServerDemo
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddDemoInfo();
+
+            services.TryAddTransient<IDemo, Demo>();
+            services.TryAddEnumerable(ServiceDescriptor.Transient<IDemo, Demo>());
 
             // Samples
             // More Info: https://docs.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#service-registration-methods
