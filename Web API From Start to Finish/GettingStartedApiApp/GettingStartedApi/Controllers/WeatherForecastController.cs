@@ -9,7 +9,7 @@ namespace GettingStartedApi.Controllers
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
@@ -18,6 +18,7 @@ namespace GettingStartedApi.Controllers
             _logger = logger;
         }
 
+        //https://localhost:7263/WeatherForecast/GetWeatherForecast
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
