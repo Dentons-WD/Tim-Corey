@@ -6,6 +6,13 @@ namespace ApiSecurity.Controllers;
 [ApiController]
 public class UsersController : ControllerBase
 {
+    private readonly IConfiguration _config;
+
+    public UsersController(IConfiguration config)
+    {
+        _config = config;
+    }
+
     // GET: api/<UsersController>
     [HttpGet]
     public IEnumerable<string> Get()
@@ -17,7 +24,7 @@ public class UsersController : ControllerBase
     [HttpGet("{id}")]
     public string Get(int id)
     {
-        return "value";
+        return _config.GetConnectionString("Default");
     }
 
     // POST api/<UsersController>
