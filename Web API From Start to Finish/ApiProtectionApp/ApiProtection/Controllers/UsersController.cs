@@ -7,17 +7,17 @@ namespace ApiProtection.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        // GET: api/<UsersController>
+        // GET: api/Users
         [HttpGet]
-        [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
+        //[ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any, NoStore = false)]
         public IEnumerable<string> Get()
         {
             return new string[] { Random.Shared.Next(1,101).ToString() };
         }
 
-        // GET api/<UsersController>/5
+        // GET api/Users/5
         [HttpGet("{id}")]
-        [ResponseCache(Duration = 60*60*24, Location = ResponseCacheLocation.Any, NoStore = false)]
+        //[ResponseCache(Duration = 60*60*24, Location = ResponseCacheLocation.Any, NoStore = false)]
         public string Get(int id)
         {
             return $"Random Number: { Random.Shared.Next(1, 101) } for Id { id }";
