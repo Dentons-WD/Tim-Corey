@@ -33,7 +33,7 @@ public class TodoData : ITodoData
     {
         var results = await _sql.LoadData<TodoModel, dynamic>(
             "dbo.spTodos_Create",
-            new { AssignedTo = assignedTo, Tas = task },
+            new { AssignedTo = assignedTo, Task = task },
             "Default");
 
         return results.FirstOrDefault();
