@@ -7,6 +7,24 @@ namespace SwaggerApi.Controllers;
 public class UsersController : ControllerBase
 {
     // GET: api/Users
+    /// <summary>
+    /// Gets a list of all users in the system.
+    /// </summary>
+    /// <remarks>
+    /// Sample Request: GET /Users
+    /// Sample Response:
+    /// [
+    ///     {
+    ///         "id": 1,
+    ///         "name": "Tim Corey"
+    ///     },
+    ///     {
+    ///         "id": 2,
+    ///         "name": "Sue Storm"
+    ///     }
+    /// ]
+    /// </remarks>
+    /// <returns>A list of users.</returns>
     [HttpGet]
     public IEnumerable<string> Get()
     {
