@@ -36,14 +36,17 @@ if (app.Environment.IsDevelopment())
     {
         //opts.SerializeAsV2 = true;
     });
+    // Custom themes: https://github.com/ostranme/swagger-ui-themes
     app.UseSwaggerUI(opts =>
     {
         opts.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
         opts.RoutePrefix = string.Empty;
+        opts.InjectStylesheet("/css/theme-monokai.css");
     });
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
