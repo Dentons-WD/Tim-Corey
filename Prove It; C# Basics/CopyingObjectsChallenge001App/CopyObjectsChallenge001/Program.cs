@@ -8,6 +8,19 @@ namespace CopyObjectsChallenge001
 {
     class Program
     {
+
+        // GOAL
+        // In the example application, turn secondPerson into a
+        // copy of the firstPerson object and then change the
+        // required items. Run the application to make sure the
+        // statements are all true.
+
+        // BONUS
+        // Identify and implement a second way to copy
+        // firstPerson into secondPerson. Make sure either way
+        // you make the copy, the statements are all true when
+        // you run it.
+
         static void Main(string[] args)
         {
             PersonModel firstPerson = new PersonModel
@@ -39,9 +52,42 @@ namespace CopyObjectsChallenge001
 
             // Set the value of the secondPerson to be a copy of the firstPerson
 
+            // GOAL
+            secondPerson = new PersonModel
+            {
+                FirstName = firstPerson.FirstName,
+                LastName = firstPerson.LastName,
+                DateOfBirth = firstPerson.DateOfBirth,
+                Addresses = new List<AddressModel>
+                {
+                    new AddressModel
+                    {
+                        StreetAddress = firstPerson.Addresses[0].StreetAddress,
+                        City = firstPerson.Addresses[0].City,
+                        State = firstPerson.Addresses[0].State,
+                        ZipCode = firstPerson.Addresses[0].ZipCode
+                    },
+                    new AddressModel
+                    {
+                        StreetAddress = firstPerson.Addresses[1].StreetAddress,
+                        City = firstPerson.Addresses[1].City,
+                        State = firstPerson.Addresses[1].State,
+                        ZipCode = firstPerson.Addresses[1].ZipCode
+                    }
+                }
+            };
+
+            // BONUS
+            // ?
+
             // Update the secondPerson's FirstName to "Bob" 
             // and change the Street Address for each of Bob's addresses
             // to a different value
+
+            // GOAL
+            secondPerson.FirstName = "Bob";
+            secondPerson.Addresses[0].StreetAddress = "99 Steak Street";
+            secondPerson.Addresses[1].StreetAddress = "200 Hepburn Way";
 
             // Ensure that the following statements are true
             Console.WriteLine($"{ firstPerson.FirstName } != { secondPerson.FirstName }");
@@ -51,6 +97,8 @@ namespace CopyObjectsChallenge001
             Console.WriteLine($"{ firstPerson.Addresses[0].City } == { secondPerson.Addresses[0].City }");
             Console.WriteLine($"{ firstPerson.Addresses[1].StreetAddress } != { secondPerson.Addresses[1].StreetAddress }");
             Console.WriteLine($"{ firstPerson.Addresses[1].City } == { secondPerson.Addresses[1].City }");
+
+            Console.ReadLine();
         }
     }
 
