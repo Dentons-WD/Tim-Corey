@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,9 +40,20 @@ namespace CopyObjectsUI
 
             // Set the value of the secondPerson to be a copy of the firstPerson
 
+            // First method
+            //string temporaryPerson = JsonConvert.SerializeObject(firstPerson);
+            //secondPerson = JsonConvert.DeserializeObject<PersonModel>(temporaryPerson);
+
+            // Second method
+            secondPerson = new PersonModel(firstPerson);
+
             // Update the secondPerson's FirstName to "Bob" 
             // and change the Street Address for each of Bob's addresses
             // to a different value
+
+            secondPerson.FirstName = "Bob";
+            secondPerson.Addresses[0].StreetAddress = "4150 Mockingbird Lane";
+            secondPerson.Addresses[1].StreetAddress = "9000 Wilmingon Ave";
 
             // Ensure that the following statements are true
             Console.WriteLine($"{ firstPerson.FirstName } != { secondPerson.FirstName }");
@@ -51,6 +63,8 @@ namespace CopyObjectsUI
             Console.WriteLine($"{ firstPerson.Addresses[0].City } == { secondPerson.Addresses[0].City }");
             Console.WriteLine($"{ firstPerson.Addresses[1].StreetAddress } != { secondPerson.Addresses[1].StreetAddress }");
             Console.WriteLine($"{ firstPerson.Addresses[1].City } == { secondPerson.Addresses[1].City }");
+
+            Console.ReadLine();
         }
     }
 
@@ -60,6 +74,23 @@ namespace CopyObjectsUI
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public List<AddressModel> Addresses { get; set; } = new List<AddressModel>();
+
+        public PersonModel()
+        {
+            
+        }
+
+        public PersonModel(PersonModel personToCopy)
+        {
+            FirstName = personToCopy.FirstName;
+            LastName = personToCopy.LastName;
+            DateOfBirth = personToCopy.DateOfBirth;
+            foreach (AddressModel originalAddress in personToCopy.Addresses)
+            {
+                AddressModel newAddress = new AddressModel(originalAddress);
+                Addresses.Add(newAddress);
+            }
+        }
     }
 
     public class AddressModel
@@ -68,5 +99,18 @@ namespace CopyObjectsUI
         public string City { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
+
+        public AddressModel()
+        {
+            
+        }
+
+        public AddressModel(AddressModel addressToCopy)
+        {
+            StreetAddress = addressToCopy.StreetAddress;
+            City = addressToCopy.City;
+            State = addressToCopy.State;
+            ZipCode = addressToCopy.ZipCode;
+        }
     }
 }
