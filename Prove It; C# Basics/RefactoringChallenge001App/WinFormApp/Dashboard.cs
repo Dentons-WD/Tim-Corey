@@ -10,12 +10,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataAccessLibrary.Models;
+using DataAccessLibrary.Data;
+using DataAccessLibrary.DbAccess;
 
 namespace WinFormApp
 {
     public partial class Dashboard : Form
     {
         BindingList<SystemUserModel> users = new BindingList<SystemUserModel>();
+
+        SystemUserData data = new SystemUserData(new SqlDataAccess());
 
         public Dashboard()
         {
@@ -24,58 +29,38 @@ namespace WinFormApp
             userDisplayList.DataSource = users;
             userDisplayList.DisplayMember = "FullName";
 
-            string connectionString = ConfigurationManager.ConnectionStrings["DapperDemoDB"].ConnectionString;
+            var records = data.GetSystemUsers().ToList();
 
-            using (IDbConnection cnn = new SqlConnection(connectionString))
-            {
-                var records = cnn.Query<SystemUserModel>("spSystemUser_Get", commandType: CommandType.StoredProcedure).ToList();
-
-                users.Clear();
-                records.ForEach(x => users.Add(x));
-            }
+            users.Clear();
+            records.ForEach(x => users.Add(x));
         }
 
         private void createUserButton_Click(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DapperDemoDB"].ConnectionString;
-
-            using (IDbConnection cnn = new SqlConnection(connectionString))
+            SystemUserModel user = new SystemUserModel
             {
-                var p = new
-                {
-                    FirstName = firstNameText.Text,
-                    LastName = lastNameText.Text
-                };
+                FirstName = firstNameText.Text,
+                LastName = lastNameText.Text
+            };
 
-                cnn.Execute("dbo.spSystemUser_Create", p, commandType: CommandType.StoredProcedure);
+            data.InsertSystemUser(user);
 
-                firstNameText.Text = "";
-                lastNameText.Text = "";
-                firstNameText.Focus();
+            firstNameText.Text = "";
+            lastNameText.Text = "";
+            firstNameText.Focus();
 
-                var records = cnn.Query<SystemUserModel>("spSystemUser_Get", commandType: CommandType.StoredProcedure).ToList();
+            var records = data.GetSystemUsers().ToList();
 
-                users.Clear();
-                records.ForEach(x => users.Add(x));
-            }
+            users.Clear();
+            records.ForEach(x => users.Add(x));
         }
 
         private void applyFilterButton_Click(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["DapperDemoDB"].ConnectionString;
+            var records = data.GetFilteredSystemUser(filterUsersText.Text).ToList();
 
-            using (IDbConnection cnn = new SqlConnection(connectionString))
-            {
-                var p = new
-                {
-                    Filter = filterUsersText.Text
-                };
-
-                var records = cnn.Query<SystemUserModel>("spSystemUser_GetFiltered", p, commandType: CommandType.StoredProcedure).ToList();
-
-                users.Clear();
-                records.ForEach(x => users.Add(x));
-            }
+            users.Clear();
+            records.ForEach(x => users.Add(x));
         }
     }
 }

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using DataAccessLibrary.Data;
+using DataAccessLibrary.DbAccess;
+using DataAccessLibrary.Models;
 
 namespace ConsoleApp
 {
@@ -17,6 +20,8 @@ namespace ConsoleApp
             string actionToTake = "";
             string connectionString = ConfigurationManager.ConnectionStrings["DapperDemoDB"].ConnectionString;
 
+            SystemUserData data = new SystemUserData(new SqlDataAccess());
+
             do
             {
                 Console.Write("What action do you want to take (Display, Add, or Quit): ");
@@ -25,13 +30,16 @@ namespace ConsoleApp
                 switch (actionToTake.ToLower())
                 {
                     case "display":
-                        using (IDbConnection cnn = new SqlConnection(connectionString))
-                        {
-                            var records = cnn.Query<UserModel>("spSystemUser_Get", commandType: CommandType.StoredProcedure).ToList();
 
-                            Console.WriteLine();
-                            records.ForEach(x => Console.WriteLine($"{ x.FirstName } { x.LastName }"));
+                        var records = data.GetSystemUsers();
+
+                        Console.WriteLine();
+
+                        foreach (var record in records)
+                        {
+                            Console.WriteLine($"{ record.FirstName } { record.LastName }");
                         }
+
                         Console.WriteLine();
                         break;
                     case "add":
@@ -41,16 +49,14 @@ namespace ConsoleApp
                         Console.Write("What is the last name: ");
                         string lastName = Console.ReadLine();
 
-                        using (IDbConnection cnn = new SqlConnection(connectionString))
+                        SystemUserModel user = new SystemUserModel
                         {
-                            var p = new
-                            {
-                                FirstName = firstName,
-                                LastName = lastName
-                            };
+                            FirstName = firstName,
+                            LastName = lastName
+                        };
 
-                            cnn.Execute("dbo.spSystemUser_Create", p, commandType: CommandType.StoredProcedure);
-                        }
+                        data.InsertSystemUser(user);
+
                         Console.WriteLine();
                         break;
                     default:
