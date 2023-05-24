@@ -60,7 +60,7 @@ namespace ConsoleUI.WithGenerics
             return output;
         }
 
-        public static void SaveToTextFile<T>(List<T> data, string filePath) where T : class, new()
+        public static void SaveToTextFile<T>(List<T> data, string filePath) where T : class
         {
             List<string> lines = new List<string>();
             StringBuilder line = new StringBuilder();
