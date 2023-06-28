@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using Autofac.Extras.Moq;
 using DemoLibrary.Logic;
 using DemoLibrary.Models;
+using DemoLibrary.Utilities;
+using Moq;
 using Xunit;
 
 namespace MoqDemoTests.Logic
@@ -66,6 +70,88 @@ namespace MoqDemoTests.Logic
                 Assert.Equal(expectedInvalidParameter, argEx.ParamName);
             }
 
+        }
+
+        [Fact]
+        public void LoadPeople_ValidCall()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                mock.Mock<ISqliteDataAccess>()
+                    .Setup(x => x.LoadData<PersonModel>("select * from Person"))
+                    .Returns(GetSamplePeople());
+
+                var cls = mock.Create<PersonProcessor>();
+                var expected = GetSamplePeople();
+
+                var actual = cls.LoadPeople();
+
+                Assert.True(actual != null);
+                Assert.Equal(expected.Count, actual.Count);
+
+                for (int i = 0; i < expected.Count; i++)
+                {
+                    Assert.Equal(expected[i].FirstName, actual[i].FirstName);
+                    Assert.Equal(expected[i].LastName, actual[i].LastName);
+                }
+            }
+        }
+
+        [Fact]
+        public void SavePeople_ValidCall()
+        {
+            using (var mock = AutoMock.GetLoose())
+            {
+                var person = new PersonModel
+                {
+                    Id = 1,
+                    FirstName = "Tim",
+                    LastName = "Corey",
+                    HeightInInches = 80
+                };
+                string sql = "insert into Person (FirstName, LastName, HeightInInches) " +
+                "values ('Tim', 'Corey', 80)";
+
+                mock.Mock<ISqliteDataAccess>()
+                    .Setup(x => x.SaveData(person, sql));
+
+                var cls = mock.Create<PersonProcessor>();
+
+                cls.SavePerson(person);
+
+                mock.Mock<ISqliteDataAccess>()
+                    .Verify(x => x.SaveData(person, sql), Times.Exactly(1));
+              
+            }
+        }
+
+        private List<PersonModel> GetSamplePeople()
+        {
+            List<PersonModel> output = new List<PersonModel>
+            {
+                new PersonModel
+                {
+                    FirstName = "Tim",
+                    LastName = "Corey"
+                },
+                new PersonModel
+                {
+                    FirstName = "Charity",
+                    LastName = "Corey"
+                },
+                new PersonModel
+                {
+                    FirstName = "Jon",
+                    LastName = "Corey"
+                },
+                new PersonModel
+                {
+                    FirstName = "Chris",
+                    LastName = "Corey"
+                }
+            };
+
+            return output;
         }
     }
 }
