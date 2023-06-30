@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
 namespace CalculationsLibrary
 {
     public class TextDataAccess
     {
-        public void SaveText(string filePath, List<string> lines)
+        public void SaveText(string filePath, List<string> lines, IWriteToText textWriter)
         {
             if (filePath.Length > 260)
             {
@@ -17,7 +18,20 @@ namespace CalculationsLibrary
 
             string fileName = Path.GetFileName(filePath);
 
-            File.WriteAllLines(fileName, lines);
+            textWriter.WriteToFile(fileName, lines);
         }
+    }
+
+    public class WriteToText : IWriteToText
+    {
+        public void WriteToFile(string filePath, List<string> lines)
+        {
+            File.WriteAllLines(filePath, lines);
+        }
+    }
+
+    public interface IWriteToText
+    {
+        void WriteToFile(string filePath, List<string> lines);
     }
 }
