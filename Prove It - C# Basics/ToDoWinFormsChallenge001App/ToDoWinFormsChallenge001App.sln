@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsUI", "WinFormsUI\WinFormsUI.csproj", "{32415401-1255-4E95-8DA2-88EEC9D2BFA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoLogic", "ToDoLogic\ToDoLogic.csproj", "{579C46F4-61BF-4B59-B9C1-11A01091F3A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{32415401-1255-4E95-8DA2-88EEC9D2BFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32415401-1255-4E95-8DA2-88EEC9D2BFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32415401-1255-4E95-8DA2-88EEC9D2BFA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579C46F4-61BF-4B59-B9C1-11A01091F3A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579C46F4-61BF-4B59-B9C1-11A01091F3A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579C46F4-61BF-4B59-B9C1-11A01091F3A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579C46F4-61BF-4B59-B9C1-11A01091F3A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
