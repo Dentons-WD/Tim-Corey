@@ -35,8 +35,33 @@
         <TextBox x:Name="firstNameText" Grid.Column="2" Grid.Row="2"
                  Width="150"/>
 
-        <Button x:Name="submitButton" Content="Run Me" Grid.Column="1" 
-                Grid.Row="3" Grid.ColumnSpan="2" Margin="10" Click="submitButton_Click"/>
+        <ComboBox x:Name="myComboBox" Grid.Column="1" Grid.Row="3"
+                  Grid.ColumnSpan="2" Margin="10">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="C:\Temp\Tim.png" Height="20" Width="20"/>
+                        <TextBlock Text="{Binding FirstName}"/>
+                        <TextBlock Text=" "/>
+                        <TextBlock Text="{Binding LastName}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
+        <Button x:Name="submitButton" Content="Run Me" Grid.Column="1" 
+                Grid.Row="4" Grid.ColumnSpan="2" Margin="10" Click="submitButton_Click"/>
+
+        <!--<Image Grid.Row="1" Grid.Column="4" Grid.RowSpan="6" Source="C:\Temp\Tim.png"/>-->
+        <!--<MediaElement Grid.Row="1" Grid.Column="4" Grid.RowSpan="6" Source="C:\Temp\Mowing.mp4"/>-->
+
+        <ScrollViewer Grid.Row="1" Grid.Column="4" Grid.RowSpan="6">
+            <StackPanel Orientation="Vertical">
+                <Image MaxHeight="200" MaxWidth="200" Source="C:\Temp\1.png"/>
+                <Image MaxHeight="200" MaxWidth="200" Source="C:\Temp\2.png"/>
+                <Image MaxHeight="200" MaxWidth="200" Source="C:\Temp\3.png"/>
+                <Image MaxHeight="200" MaxWidth="200" Source="C:\Temp\4.png"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
