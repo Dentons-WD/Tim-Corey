@@ -15,30 +15,5 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ComboBox Grid.Row="0" x:Name="People" SelectedItem="{Binding SelectedPerson}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding FullName}"/>
-                        <TextBlock Text=" - Are they alive: "/>
-                        <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsAlive}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <ComboBox Grid.Row="1" x:Name="SelectedPerson_Addresses"
-                  SelectedItem="{Binding SelectedAddress}"
-                  >
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding FullAddress}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-
-        <TextBlock Grid.Row="2" x:Name="SelectedAddress_FullAddress"/>
     </Grid>
 </Window>
