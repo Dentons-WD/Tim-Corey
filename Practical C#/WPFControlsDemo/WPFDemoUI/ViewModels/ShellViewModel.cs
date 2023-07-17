@@ -9,9 +9,36 @@ using System.Threading.Tasks;
 
 namespace WPFDemoUI.ViewModels
 {
-    public class ShellViewModel
+    public class ShellViewModel : Screen
     {
         public BindableCollection<PersonModel> People { get; set; }
+
+        private PersonModel _selectedPerson;
+
+        public PersonModel SelectedPerson
+        {
+            get { return _selectedPerson; }
+            set 
+            {
+                _selectedPerson = value;
+                SelectedAddress = value.PrimaryAddress;
+                NotifyOfPropertyChange(() => SelectedPerson);
+            }
+        }
+
+        private AddressModel _selectedAddress;
+
+        public AddressModel SelectedAddress
+        {
+            get { return _selectedAddress; }
+            set 
+            { 
+                _selectedAddress = value;
+                SelectedPerson.PrimaryAddress = value;
+                NotifyOfPropertyChange(() => SelectedAddress);
+            }
+        }
+
 
         public ShellViewModel()
         {
