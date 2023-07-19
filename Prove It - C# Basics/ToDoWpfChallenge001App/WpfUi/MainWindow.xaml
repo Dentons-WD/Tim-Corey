@@ -4,9 +4,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfUi"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" FontSize="16"
+        Title="ToDo List" Height="700" Width="500">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Row 1 -->
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="ToDo List:" 
+                   FontSize="20" Margin="0,0,5,5"/>
 
+        <!-- Row 2 -->
+        <ListView Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" 
+                  x:Name="ToDosListView" Margin="0,0,5,5" MouseDoubleClick="ToDosListView_MouseDoubleClick" 
+                  PreviewKeyDown="ToDosListView_PreviewKeyDown">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Path=IsComplete}" IsEnabled="False"  
+                                  VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <TextBox Text="{Binding Path=Text}" Margin="0,0,5,0"
+                                 BorderBrush="Transparent"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Row 4 -->
+        <Button x:Name="AddToDoButton" Grid.Column="1" Grid.Row="4" Content="Add ToDo"
+                Margin="0,5,5,0" Padding="5" Click="AddToDoButton_Click"/>
+        <TextBox x:Name="AddToDoTextBox" Grid.Column="2" Grid.Row="4"
+                 Margin="5,5,0,0" MinWidth="200"/>
     </Grid>
 </Window>
