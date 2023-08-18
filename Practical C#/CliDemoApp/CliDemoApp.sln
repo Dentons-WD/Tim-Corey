@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliDemo", "CliDemo\CliDemo.csproj", "{2AB9C9C3-2295-42CB-AAE3-2048B9C2BC3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AB9C9C3-2295-42CB-AAE3-2048B9C2BC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB9C9C3-2295-42CB-AAE3-2048B9C2BC3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB9C9C3-2295-42CB-AAE3-2048B9C2BC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB9C9C3-2295-42CB-AAE3-2048B9C2BC3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C0E8D66-9BE8-4FA1-8717-AE1D129EFD4C}
+	EndGlobalSection
+EndGlobal
