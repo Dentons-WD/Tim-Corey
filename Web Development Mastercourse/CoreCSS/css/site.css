@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&family=Zen+Dots&display=swap');
+
+html {
+    font-size: 16px;
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.5rem;
+    /* font: italic bold 16px/24px Roboto; */
+    text-align: left;
+}
+
+h1 {
+    font-size: 2rem;
+    font-family: 'Zen Dots', cursive;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+p, div {
+    text-indent: 2rem;
+}
+
+/* #first-character {
+    font-size: 50px;
+} */
+
+.starting-character {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.starting-character.first-overall-character {
+    /* color: rgba(15, 50, 148, 0.904) */
+    color: #0aa30a
+}
+
+.sample-copy {
+    font-size: 1.25rem;
+    display: flow-root;
+}
+
+footer.sample-copy {
+    color:red;
+    font-style: italic;
+}
+
+.key-info {
+    text-decoration-line: underline;
+    text-decoration-color: rgb(230, 72, 72);
+    text-decoration-style: wavy;
+    /* text-decoration: underline rgb(230, 72, 72) wavy; */
+}
+
+.ninja {
+    /* visibility: collapse; */
+    /* display: none; */
+    display: inline-block;
+    /* border: 1px solid black; */
+    border-color: red;
+    border-width: 5px;
+    border-style: dotted;
+    width: 25%;
+    min-width: 100px;
+    /* padding: 15px; */
+    padding-left: 15px;
+    margin: 10px 5px 10px 0;
+}
+
+.ninja.better {
+    min-height: 300px;
+}
+
+#border-collie-img {
+    width: 30%;
+    float: right;
+}
